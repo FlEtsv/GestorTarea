@@ -1,5 +1,7 @@
 package org.app;
 
+import static javafx.application.Application.launch;
+import javafx.stage.Stage;
 import org.BasesDatos.CrearBaseDatos;
 
 /**
@@ -12,6 +14,7 @@ public class App
     {
     	CrearBaseDatos crear = new CrearBaseDatos();
     	crear.Crear();
+        launch(args);
     	
     }
 }
