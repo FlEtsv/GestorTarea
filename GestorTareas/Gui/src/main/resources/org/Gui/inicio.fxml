@@ -9,7 +9,6 @@
 
 <VBox fx:controller="org.Gui.InicioSesionController" xmlns:fx="http://javafx.com/fxml/1" spacing="10" alignment="CENTER"
       stylesheets="@iniciosesion.fxml.css">
-    <!-- Contenidos de tu vista de inicio de sesión aquí -->
     <Label text="Inicio de Sesión"/>
     <TextField fx:id="nombreUsuario" promptText="Nombre de Usuario"/>
     <PasswordField fx:id="contrasena" promptText="Contraseña"/>

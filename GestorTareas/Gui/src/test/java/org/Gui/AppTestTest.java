@@ -1,14 +1,15 @@
 package org.Gui;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Test;
+class AppTestTest {
 
-public class AppTestTest {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-
+    @Test
+    @Disabled("Not yet implemented")
+    void test() {
+        fail("Not yet implemented");
+    }
 }
+
