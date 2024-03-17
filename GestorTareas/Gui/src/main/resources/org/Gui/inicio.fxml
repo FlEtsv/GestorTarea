@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:controller="org.Gui.InicioSesionController" xmlns:fx="http://javafx.com/fxml/1" spacing="10" alignment="CENTER"
+<VBox fx:controller="org.Gui.InicioSesionController" xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER"
       stylesheets="@iniciosesion.fxml.css">
     <Label text="Inicio de Sesión"/>
     <TextField fx:id="nombreUsuario" promptText="Nombre de Usuario"/>
     <PasswordField fx:id="contrasena" promptText="Contraseña"/>
     <Button text="Iniciar Sesión" onAction="#manejarInicioSesion"/>
+    <!-- Corregido para usar onMouseClicked y referenciar correctamente el método en el controlador -->
+    <Label fx:id="registrarte" text="¿Aun no tienes cuenta? Regístrate aquí." onMouseClicked="#registrarte" style="-fx-cursor: hand;" />
 </VBox>
-

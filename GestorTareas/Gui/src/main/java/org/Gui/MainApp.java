@@ -11,39 +11,38 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    private StackPane mainContainer = new StackPane();
+    private final StackPane mainContainer = new StackPane();
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        // Configura y muestra la escena principal
+    public void start(Stage primaryStage) {
         Scene scene = new Scene(mainContainer, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Aplicación con Contenedor Principal");
         primaryStage.show();
 
-        // Carga la vista de inicio de sesión como inicial
-        cargarVistaInicioSesion();
+        cargarVista("/org/Gui/inicio.fxml");
     }
 
-private void cargarVistaInicioSesion() {
-    try {
-        URL url = getClass().getResource("/org/Gui/inicio.fxml");
+    public void cargarVista(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(fxmlPath));
+            VBox vista = loader.load();
 
-        System.out.println("URL del FXML: " + url);
-        
-        // Asegúrate de que 'url' no sea null antes de continuar
-        if (url != null) {
-            // Carga la vista desde la URL y la asigna a una variable
-            VBox inicioSesion = FXMLLoader.load(url);
-            
-            // Ahora puedes utilizar 'inicioSesion' correctamente
-            mainContainer.getChildren().setAll(inicioSesion);
-        } else {
-            // Maneja el caso en que la URL sea null para evitar una NullPointerException
-            System.err.println("No se pudo cargar el recurso: InicioSesion.fxml");
+            // Inyectar la instancia de MainApp
+            Object controller = loader.getController();
+            if (controller instanceof InicioSesionController) {
+                ((InicioSesionController) controller).setMainApp(this);
+            }
+
+            mainContainer.getChildren().setAll(vista);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("No se pudo cargar el recurso: " + fxmlPath);
         }
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}}
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
