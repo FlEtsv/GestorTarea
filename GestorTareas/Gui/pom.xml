@@ -54,6 +54,11 @@
       <version>6.8.1</version>
       <scope>test</scope>
     </dependency>
+        <dependency>
+        <groupId>main.svfa.com</groupId>
+        <artifactId>BasesDatos</artifactId>
+        <version>0.0.1</version>
+        </dependency>
   </dependencies>
 
   <build>
