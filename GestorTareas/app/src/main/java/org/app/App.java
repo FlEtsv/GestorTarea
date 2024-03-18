@@ -14,7 +14,6 @@ public class App {
     	crear.Crear();
                 // Ahora inicia la aplicación JavaFX
         Platform.startup(() -> {
-            // No necesitas hacer nada aquí si solo estás inicializando la base de datos
         });
 
         // Después de la inicialización, lanza la UI principal

@@ -8,6 +8,21 @@ import java.sql.Statement;
 
 
 public class ConsultasDB {
+    public boolean usuarioExiste(String username) {
+    // Suponiendo que tienes una función para obtener una conexión a la base de datos
+    try (Connection conn = ConexionDB.conectar();
+         PreparedStatement pstmt  = conn.prepareStatement("SELECT * FROM usuarios WHERE username=?")) {
+        pstmt.setString(1, username);
+        ResultSet rs  = pstmt.executeQuery();
+
+        // Si rs.next() es true, entonces el usuario ya existe
+        return rs.next();
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+        return false;
+    }
+}
+
     public void mostrarUsuarios() {
         String sql = "SELECT id, username, email, password_hash FROM usuarios";
 

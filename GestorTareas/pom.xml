@@ -262,20 +262,18 @@
   
   <modules>
               	
-    
+    <module>app</module>
     
     <module>Actualizaciones</module>
                 
-    
-    
     <module>BasesDatos</module>
               
+    <module>gui</module>
     
     
-    <module>app</module>
           
     
-    <module>gui</module>
+    
       
   </modules>
       

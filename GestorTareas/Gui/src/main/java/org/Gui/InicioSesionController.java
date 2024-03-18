@@ -8,10 +8,9 @@ import javafx.scene.control.TextField;
 import org.BasesDatos.InicioSesion;
 import javafx.scene.input.MouseEvent;
 
-public class InicioSesionController {
+public class InicioSesionController extends BaseControlador {
 
-    // Referencia a MainApp
-    private MainApp mainApp;
+
 
     @FXML
     private TextField nombreUsuario;
@@ -20,9 +19,7 @@ public class InicioSesionController {
     private PasswordField contrasena;
 
     // Setter para inyectar la referencia de MainApp
-    public void setMainApp(MainApp mainApp) {
-        this.mainApp = mainApp;
-    }
+
 
     @FXML
     private void manejarInicioSesion() {
