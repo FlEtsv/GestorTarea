@@ -37,6 +37,12 @@
         <artifactId>jbcrypt</artifactId>
         <version>0.4</version> <!-- Verifica si hay una versión más reciente disponible -->
     </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-base</artifactId>
+      <version>23-ea+3</version>
+      <type>jar</type>
+    </dependency>
   </dependencies>
 
   <build>

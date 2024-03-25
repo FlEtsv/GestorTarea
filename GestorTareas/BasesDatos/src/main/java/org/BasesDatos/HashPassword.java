@@ -13,15 +13,20 @@ public class HashPassword {
 
     // Verifica una contraseña con un hash dado
     public static boolean verifyPassword(String password_plaintext, String stored_hash) {
-        boolean password_verified = false;
+    boolean password_verified = false;
 
-        if (null == stored_hash || !stored_hash.startsWith("$2a$"))
-            throw new java.lang.IllegalArgumentException("Hash inválido proporcionado para comparación");
-
+    if (null == stored_hash || !stored_hash.startsWith("$2a$")) {
+        throw new java.lang.IllegalArgumentException("Hash inválido proporcionado para comparación");
+    } else {
+        System.out.println("contraseña no nula y formato correcto contraseña texto plano:"+ password_plaintext + " y la contraseña hash almacenada:" + stored_hash);
         password_verified = BCrypt.checkpw(password_plaintext, stored_hash);
-
-        return password_verified;
+        if(password_verified) {
+            System.out.println("verificacion hecha");
+        }
     }
+    return password_verified;
+}
+
 
 }
 /*

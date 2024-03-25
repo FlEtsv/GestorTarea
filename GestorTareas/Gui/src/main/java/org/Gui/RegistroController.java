@@ -46,9 +46,9 @@ private void manejarRegistro() {
 
     // Lógica de registro
     try {
-        String contrasenaEncriptada = HashPassword.hashPassword(contrasenaString);
         
-        insertar.insertarUsuario(nombre, contrasenaEncriptada, emailString);
+        
+        insertar.insertarUsuario(nombre, contrasenaString, emailString);
         mostrarAlerta("Registro exitoso", "El usuario ha sido registrado correctamente.", Alert.AlertType.INFORMATION);
         
     } catch(Exception e) {

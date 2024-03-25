@@ -33,16 +33,17 @@ public class InicioSesionController extends BaseControlador {
 
         try {
             int resultadoInicioSesion = iniciar.iniciarSesion(usuario, password);
-            if(resultadoInicioSesion == -1){
+            if(resultadoInicioSesion == -3){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error de autenticación");
                 alert.setHeaderText(null);
                 alert.setContentText("La contraseña o email son incorrectos");
                 alert.showAndWait();
             } else {
+                SesionUsuario.getInstance().setResultadoInicioSesion(resultadoInicioSesion);
                 // Si la autenticación es exitosa, cambia la vista.
                 System.out.println("Autenticación exitosa.");
-                // Aquí deberías llamar al método para cambiar de vista, si está implementado.
+                mainApp.cargarVista("/org/Gui/tareas.fxml");
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
