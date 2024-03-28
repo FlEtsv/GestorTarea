@@ -6,6 +6,7 @@ import java.io.InputStream;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -27,35 +28,58 @@ public class MainApp extends Application {
     }
 
 public void cargarVista(String fxmlPath, Stage stageActual) {
-    // Intenta obtener el recurso como un stream
-    InputStream is = getClass().getResourceAsStream(fxmlPath);
-    if (is != null) {
-        try {
-            // Cerramos el InputStream ya que solo quiero comprobar su existencia
-            is.close();
-
+    InputStream is = null;
+    try {
+        // Intenta obtener el recurso como un stream
+        is = getClass().getResourceAsStream(fxmlPath);
+        if (is != null) {
+            Dialogos dialogo = new Dialogos();
+            dialogo.mostrarDialogoPersonalizado("Ruta encontrada y existente");
+            
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(fxmlPath));
-            VBox vista = loader.load();
-
-            // Inyectar la instancia de MainApp
-            BaseControlador controller = loader.getController();
-            controller.setMainApp(this);
-
-            if (controller instanceof ControladorConStage) {
-                ((ControladorConStage) controller).setStage(stageActual);
-            }
+            loader.setControllerFactory(type -> {
+                if (BaseControlador.class.isAssignableFrom(type)) {
+                    try {
+                        BaseControlador controller = (BaseControlador) type.getDeclaredConstructor().newInstance();
+                        controller.setMainApp(this);
+                        if (controller instanceof ControladorConStage) {
+                            ((ControladorConStage) controller).setStage(stageActual);
+                        }
+                        return controller;
+                    } catch (Exception e) {
+                        throw new RuntimeException("No se pudo crear el controlador para " + type.getName(), e);
+                    }
+                } else {
+                    try {
+                        return type.getDeclaredConstructor().newInstance();
+                    } catch (Exception e) {
+                        throw new RuntimeException("No se pudo crear el controlador para " + type.getName(), e);
+                    }
+                }
+            });
+            
+            Pane vista = loader.load(is); //  esta línea corresponde con el tipo del contenedor raíz de tu FXML
             mainContainer.getChildren().clear();
             mainContainer.getChildren().setAll(vista);
-        } catch (IOException e) {
-            System.err.println("No se pudo cargar el recurso: " + fxmlPath);
+        } else {
+            Dialogos dialogo = new Dialogos();
+            dialogo.mostrarDialogoPersonalizado("No se ha podido encontrar la ruta a la vista: " + fxmlPath);
         }
-    } else {
-        String dialogoPerso = "No se ha podido encontrar la ruta a la vista";
-        Dialogos dialogo = new Dialogos();
-        dialogo.mostrarDialogoPersonalizado(dialogoPerso);
+    } catch (Exception e) {
+        e.printStackTrace(); // Imprime cualquier excepción que ocurra durante el proceso
+    } finally {
+        if (is != null) {
+            try {
+                is.close(); // Cierra el InputStream en el bloque finally para asegurar que siempre se cierre
+            } catch (IOException e) {
+                e.printStackTrace(); // Imprime cualquier excepción ocurrida al intentar cerrar el InputStream
+            }
+        }
     }
 }
+
+
 
 
 }

@@ -9,6 +9,5 @@
     <TextField fx:id="nombreUsuario" promptText="Nombre de Usuario"/>
     <PasswordField fx:id="contrasena" promptText="Contraseña"/>
     <Button text="Iniciar Sesión" onAction="#manejarInicioSesion"/>
-    <!-- Corregido para usar onMouseClicked y referenciar correctamente el método en el controlador -->
     <Label fx:id="registrarte" text="¿Aun no tienes cuenta? Regístrate aquí." onMouseClicked="#registrarte" style="-fx-cursor: hand;" />
 </VBox>

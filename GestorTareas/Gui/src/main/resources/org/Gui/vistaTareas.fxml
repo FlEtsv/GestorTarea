@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Gui.VistaPrincipalGestorTareasController">
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Gui.VistaPrincipalGestorTareasController">
     <top>
         <VBox>
             <MenuBar>
@@ -13,18 +19,18 @@
                 <Menu text="Ayuda" />
             </MenuBar>
             <ToolBar>
-                <Button text="Agregar Tarea" fx:id="botonAgregarTarea" />
-                <Button text="Editar Tarea" fx:id="botonEditarTarea" />
-                <Button text="Eliminar Tarea" fx:id="botonEliminarTarea" />
+                <Button fx:id="botonAgregarTarea" text="Agregar Tarea" />
+                <Button fx:id="botonEditarTarea" text="Editar Tarea" />
+                <Button fx:id="botonEliminarTarea" text="Eliminar Tarea" />
             </ToolBar>
         </VBox>
     </top>
     <center>
         <TableView fx:id="tablaTareas">
             <columns>
-                <TableColumn text="Título" fx:id="columnaTitulo" />
-                <TableColumn text="Estado" fx:id="columnaEstado" />
-                <TableColumn text="Fecha Vencimiento" fx:id="columnaFechaVencimiento" />
+                <TableColumn fx:id="columnaTitulo" prefWidth="105.0" text="Título" />
+                <TableColumn fx:id="columnaEstado" prefWidth="60.0" text="Estado" />
+                <TableColumn fx:id="columnaFechaVencimiento" prefWidth="112.0" text="Fecha Vencimiento" />
             </columns>
         </TableView>
     </center>

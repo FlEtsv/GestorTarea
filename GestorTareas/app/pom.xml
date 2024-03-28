@@ -17,8 +17,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.release>17</maven.compiler.release>
   </properties>
 
   <dependencies>
@@ -46,7 +45,7 @@
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-graphics</artifactId>
-      <version>17.0.1</version>
+      <version>17.0.2</version>
       <type>jar</type>
     </dependency>
     <dependency>
@@ -65,8 +64,8 @@
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.8.1</version> <!-- Asegúrate de usar una versión reciente -->
             <configuration>
-                <source>11</source> <!-- Versión del código fuente de Java -->
-                <target>11</target> <!-- Versión de bytecode objetivo de Java -->
+                <source>17</source> <!-- Versión del código fuente de Java -->
+                <target>17</target> <!-- Versión de bytecode objetivo de Java -->
             </configuration>
         </plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
