@@ -1,16 +1,21 @@
 package org.Gui;
 
-import java.awt.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.BasesDatos.InicioSesion;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
-public class InicioSesionController extends BaseControlador {
+public class InicioSesionController extends BaseControlador implements  ControladorConStage {
+    private Stage stage;
 
-
+    @Override
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+    
 
     @FXML
     private TextField nombreUsuario;
@@ -42,8 +47,8 @@ public class InicioSesionController extends BaseControlador {
             } else {
                 SesionUsuario.getInstance().setResultadoInicioSesion(resultadoInicioSesion);
                 // Si la autenticación es exitosa, cambia la vista.
-                System.out.println("Autenticación exitosa.");
-                mainApp.cargarVista("/org/Gui/tareas.fxml");
+                System.out.println("Autenticación exitosa. cargando vista tareas");
+                mainApp.cargarVista("/org/Gui/vistaTareas.fxml", stage);
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -59,12 +64,13 @@ public class InicioSesionController extends BaseControlador {
         System.out.println("Registrarte clickeado");
         if(mainApp != null) {
             System.out.println("Cargando vista de registro...");
-            mainApp.cargarVista("/org/Gui/registro.fxml");
+            mainApp.cargarVista("/org/Gui/registro.fxml", stage);
         } else {
             System.out.println("mainApp es null");
         }
     }
-
 }
+
+
 
 

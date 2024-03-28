@@ -5,7 +5,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import org.BasesDatos.CrearBaseDatos;
 import org.BasesDatos.ConsultasDB;
-import org.BasesDatos.InicioSesion;
 import org.Gui.MainApp;
 
 

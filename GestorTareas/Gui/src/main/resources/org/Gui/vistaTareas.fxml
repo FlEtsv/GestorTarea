@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Gui.VistaPrincipalGestorTareasController">
+    <top>
+        <VBox>
+            <MenuBar>
+                <Menu text="Archivo" />
+                <Menu text="Editar" />
+                <Menu text="Ver" />
+                <Menu text="Ayuda" />
+            </MenuBar>
+            <ToolBar>
+                <Button text="Agregar Tarea" fx:id="botonAgregarTarea" />
+                <Button text="Editar Tarea" fx:id="botonEditarTarea" />
+                <Button text="Eliminar Tarea" fx:id="botonEliminarTarea" />
+            </ToolBar>
+        </VBox>
+    </top>
+    <center>
+        <TableView fx:id="tablaTareas">
+            <columns>
+                <TableColumn text="Título" fx:id="columnaTitulo" />
+                <TableColumn text="Estado" fx:id="columnaEstado" />
+                <TableColumn text="Fecha Vencimiento" fx:id="columnaFechaVencimiento" />
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

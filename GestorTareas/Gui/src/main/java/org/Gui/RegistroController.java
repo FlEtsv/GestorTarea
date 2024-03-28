@@ -4,11 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import org.BasesDatos.ConsultasDB;
-import org.BasesDatos.HashPassword;
 
-public class RegistroController extends BaseControlador {
-
+public class RegistroController extends BaseControlador implements ControladorConStage {
+    private Stage stage;
+    @Override
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     @FXML
     private TextField nombreUsuario;
@@ -56,7 +60,7 @@ private void manejarRegistro() {
     }
     if(mainApp != null) {
             System.out.println("Cargando vista de registro...");
-            mainApp.cargarVista("/org/Gui/inicio.fxml");
+            mainApp.cargarVista("/org/Gui/inicio.fxml", stage);
         } else {
             System.out.println("mainApp es null");
         }
@@ -74,6 +78,8 @@ private boolean emailValido(String email) {
     String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
     return email.matches(regex);
 }
+
+
 
 }
 
