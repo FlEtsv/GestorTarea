@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.BasesDatos.ConsultasDB;
 
@@ -60,6 +61,16 @@ private void manejarRegistro() {
     }
     if(mainApp != null) {
             System.out.println("Cargando vista de registro...");
+            mainApp.cargarVista("/org/Gui/inicio.fxml", stage);
+        } else {
+            System.out.println("mainApp es null");
+        }
+}
+@FXML
+private void volverInicioSesion(MouseEvent event){
+            System.out.println("Volver a inicio Sesion clickeado");
+        if(mainApp != null) {
+            System.out.println("Cargando vista de Inicio Sesion...");
             mainApp.cargarVista("/org/Gui/inicio.fxml", stage);
         } else {
             System.out.println("mainApp es null");

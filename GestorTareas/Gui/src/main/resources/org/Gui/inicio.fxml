@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:controller="org.Gui.InicioSesionController" xmlns:fx="http://javafx.com/fxml" spacing="10" alignment="CENTER"
+<VBox fx:controller="org.Gui.InicioSesionController" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/1" spacing="10" alignment="CENTER"
       stylesheets="@iniciosesion.fxml.css">
     <Label text="Inicio de Sesión"/>
     <TextField fx:id="nombreUsuario" promptText="Nombre de Usuario"/>
