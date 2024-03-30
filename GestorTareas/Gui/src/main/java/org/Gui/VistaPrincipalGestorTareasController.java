@@ -1,16 +1,27 @@
 package org.Gui;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.BasesDatos.Tarea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.BasesDatos.TareaDAO;
+import org.BasesDatos.TareaServicio;
+import org.BasesDatos.TareaDAO;
+import org.BasesDatos.TareaDAOImpl;
 
 
 
 public class VistaPrincipalGestorTareasController extends BaseControlador implements  ControladorConStage {
+        int usuarioId = SesionUsuario.getInstance().getResultadoInicioSesion();
+        TareaDAO tareaDAO = new TareaDAOImpl(); 
+        TareaServicio tareaServicio = new TareaServicio(tareaDAO);
 private Stage stage;
 
     @Override
@@ -28,6 +39,9 @@ private Stage stage;
 
     @FXML
     private TableColumn<Tarea, String> columnaFechaVencimiento;
+    
+    @FXML
+    private TableColumn<Tarea, String> columnaDescripcion;
 
     @FXML
     private Button botonAgregarTarea;
@@ -44,21 +58,24 @@ private Stage stage;
         // Configura las columnas de la tabla
         columnaTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         columnaEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        columnaFechaVencimiento.setCellValueFactory(new PropertyValueFactory<>("fechaLimite"));
+        columnaFechaVencimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_limite"));
+        columnaDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
 
- 
+
+
+
         cargarDatosEnTabla();
         configurarManejadoresEventos();
     }
     
     private void cargarDatosEnTabla() {
-        // Aquí debería cargar los datos en tu TableView. Por ejemplo, si tengo una lista de tareas:
-        // tablaTareas.setItems(tuListaDeTareas);
+        ObservableList<Tarea> tareasParaVista = tareaServicio.obtenerTareasParaVista(usuarioId);
+        tablaTareas.setItems(tareasParaVista);
     }
 
     private void configurarManejadoresEventos() {
         botonAgregarTarea.setOnAction(event -> {
-            // Código para agregar tarea
+               mostrarAgregarTarea();
         });
         
         botonEditarTarea.setOnAction(event -> {
@@ -69,6 +86,23 @@ private Stage stage;
             // Código para eliminar tarea seleccionada
         });
     }
+    @FXML
+private void mostrarAgregarTarea() {
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("agregarTarea.fxml"));
+        Parent root = fxmlLoader.load();
+        
+        Stage stage = new Stage();
+        stage.setTitle("Agregar Tarea");
+        stage.setScene(new Scene(root));
+        stage.show();
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+        // Manejar el error
+    }
+}
+
 
 
 

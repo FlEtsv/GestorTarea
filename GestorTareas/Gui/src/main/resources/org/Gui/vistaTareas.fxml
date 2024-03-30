@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Gui.VistaPrincipalGestorTareasController">
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Gui.VistaPrincipalGestorTareasController">
     <top>
         <VBox>
             <MenuBar>
@@ -28,9 +28,10 @@
     <center>
         <TableView fx:id="tablaTareas">
             <columns>
-                <TableColumn fx:id="columnaTitulo" prefWidth="105.0" text="Título" />
-                <TableColumn fx:id="columnaEstado" prefWidth="60.0" text="Estado" />
+                <TableColumn fx:id="columnaTitulo" prefWidth="99.0" text="Título" />
+                <TableColumn fx:id="columnaEstado" prefWidth="66.0" text="Estado" />
                 <TableColumn fx:id="columnaFechaVencimiento" prefWidth="112.0" text="Fecha Vencimiento" />
+                <TableColumn fx:id="columnaDescripcion" prefWidth="200" text="Descripcion" /> 
             </columns>
         </TableView>
     </center>

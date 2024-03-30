@@ -29,7 +29,7 @@ public void crearTarea(Tarea tarea) {
             pstmt.setInt(1, tarea.getUsuario_id());
             pstmt.setString(2, tarea.getTitulo());
             pstmt.setString(3, tarea.getDescripcion());
-            pstmt.setString(4, tarea.getFecha_limite());
+            pstmt.setDate(4, java.sql.Date.valueOf(tarea.getFecha_limite()));
             pstmt.executeUpdate();
             conn.commit();
             System.out.println("Tarea creada exitosamente.");
@@ -67,9 +67,8 @@ public List<Tarea> verTareas(int usuarioId){
             Tarea tarea = new Tarea();
             tarea.setTitulo(rs.getString("titulo"));
             tarea.setDescripcion(rs.getString("descripcion"));
-            tarea.setFecha_limite(rs.getString("fecha_limite"));
+            tarea.setFecha_limite(rs.getDate("fecha_limite").toLocalDate());
             tarea.setEstado(rs.getString("estado"));
-            tarea.setFecha_creacion(rs.getString("fecha_creacion"));
             tareas.add(tarea);
         }
     } catch (SQLException e) {
@@ -120,7 +119,7 @@ public List<Tarea> verTareas(int usuarioId){
 		        pstmt.setString(1, tarea.getTitulo());
 		        pstmt.setString(2, tarea.getDescripcion());
 		        pstmt.setString(3, tarea.getEstado());
-		        pstmt.setString(4, tarea.getFecha_limite());
+                        pstmt.setDate(4, java.sql.Date.valueOf(tarea.getFecha_limite()));
 		        pstmt.setInt(5, tarea.getId());
 		        pstmt.setInt(6, tarea.getUsuario_id());
 		        pstmt.executeUpdate();

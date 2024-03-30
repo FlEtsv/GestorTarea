@@ -4,6 +4,8 @@
  */
 package org.BasesDatos;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author steve
@@ -14,12 +16,18 @@ public class Tarea {
     private String titulo;
     private String descripcion;
     private String estado;
-    private String fecha_creacion;
-    private String fecha_limite;
-    
-    // Más propiedades...
-
-    // Constructores, getters y setters...
+    private LocalDate fecha_creacion;
+    private LocalDate  fecha_limite;
+    /*
+        public Tarea( int usuario_id, String titulo, String descripcion, String estado, LocalDate fecha_limite) {
+        this.usuario_id = usuario_id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.estado = estado;
+        this.fecha_limite = fecha_limite;
+    }
+*/
+    public Tarea(){} 
 
     public int getId() {
         return id;
@@ -60,20 +68,15 @@ public class Tarea {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    public String getFecha_creacion() {
-        return fecha_creacion;
+    public LocalDate getFecha_creacion(){
+    return fecha_creacion;
     }
 
-    public void setFecha_creacion(String fecha_creacion) {
-        this.fecha_creacion = fecha_creacion;
-    }
-
-    public String getFecha_limite() {
+    public LocalDate getFecha_limite() {
         return fecha_limite;
     }
 
-    public void setFecha_limite(String fecha_limite) {
+    public void setFecha_limite(LocalDate fecha_limite) {
         this.fecha_limite = fecha_limite;
     }
 
