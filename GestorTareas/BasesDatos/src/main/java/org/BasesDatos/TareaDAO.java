@@ -14,5 +14,5 @@ public interface TareaDAO {
     void crearTarea(Tarea tarea);
     List<Tarea> verTareas(int usuarioId);
     void modificarTarea(Tarea tarea);
-    void eliminarTarea(int tareaId);
+    void eliminarTarea(int tareaId, int usuarioId);
 }

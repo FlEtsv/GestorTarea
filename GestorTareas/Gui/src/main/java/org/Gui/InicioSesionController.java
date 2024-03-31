@@ -45,7 +45,7 @@ public class InicioSesionController extends BaseControlador implements  Controla
                 alert.setContentText("La contraseña o email son incorrectos");
                 alert.showAndWait();
             } else {
-                SesionUsuario.getInstance().setResultadoInicioSesion(resultadoInicioSesion);
+                Sesion.getInstance().setResultadoInicioSesion(resultadoInicioSesion);
                 // Si la autenticación es exitosa, cambia la vista.
                 System.out.println("Autenticación exitosa. cargando vista tareas");
                 mainApp.cargarVista("/org/Gui/vistaTareas.fxml", stage);

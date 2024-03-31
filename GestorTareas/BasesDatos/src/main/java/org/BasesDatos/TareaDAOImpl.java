@@ -65,6 +65,7 @@ public List<Tarea> verTareas(int usuarioId){
         ResultSet rs = pstmt.executeQuery();
         while (rs.next()) {
             Tarea tarea = new Tarea();
+            tarea.setId(rs.getInt("id"));
             tarea.setTitulo(rs.getString("titulo"));
             tarea.setDescripcion(rs.getString("descripcion"));
             tarea.setFecha_limite(rs.getDate("fecha_limite").toLocalDate());
@@ -80,33 +81,38 @@ public List<Tarea> verTareas(int usuarioId){
 
 
 
-    @Override
-	public void eliminarTarea(int tareaid){
-	    String sql = "DELETE FROM tareas WHERE id = ? AND usuario_id = ?;";
-	    try(Connection conn = ConexionDB.conectar()){
-	    	conn.setAutoCommit(false);
-		    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                        Tarea tarea = new Tarea();
-		        pstmt.setInt(1, tarea.getId());
-		        pstmt.setInt(2, tarea.getUsuario_id());
-		        pstmt.executeUpdate();
-		        
-		        conn.commit();
-		        System.out.println("Tarea eliminada correctamente.");
-		    }catch(SQLException e) {
-		    	if(conn != null) {
-		    		try {
-		    			conn.rollback();
-		    		}catch(SQLException ex) {
-		    			System.out.println(ex.getMessage());
-		    		}
-		    	}
-		    	System.out.println(e.getMessage());
-		    }
-	    }catch(SQLException e) {
-	    	System.out.println(e.getMessage());
-	    }
-	}
+@Override
+public void eliminarTarea(int tareaid,int usuarioId){
+    String sql = "DELETE FROM tareas WHERE id = ? AND usuario_id = ?;";
+    try (Connection conn = ConexionDB.conectar()) {
+        conn.setAutoCommit(false);
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, tareaid);
+            pstmt.setInt(2, usuarioId);
+            int filasAfectadas = pstmt.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                conn.commit();
+                System.out.println("Tarea eliminada correctamente.");
+            } else {
+                conn.rollback();
+                System.out.println("No se encontró la tarea a eliminar.");
+            }
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+            System.out.println(e.getMessage());
+        }
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
+
 
 
 

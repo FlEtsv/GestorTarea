@@ -8,17 +8,18 @@ package org.Gui;
  *
  * @author steve
  */
-public class SesionUsuario {
-    private static SesionUsuario instancia = null;
+public class Sesion {
+    private static Sesion instancia = null;
     private int resultadoInicioSesion;
+    private int idTarea;
     
-    private SesionUsuario() {
+    private Sesion() {
         // Constructor privado para el patrón Singleton
     }
     
-    public static SesionUsuario getInstance() {
+    public static Sesion getInstance() {
         if (instancia == null) {
-            instancia = new SesionUsuario();
+            instancia = new Sesion();
         }
         return instancia;
     }
@@ -29,5 +30,13 @@ public class SesionUsuario {
     
     public void setResultadoInicioSesion(int resultadoInicioSesion) {
         this.resultadoInicioSesion = resultadoInicioSesion;
+    }
+    
+    public int getIdTarea() {
+        return idTarea;
+    }
+
+    public void setIdTarea(int idTarea) {
+        this.idTarea = idTarea;
     }
 }

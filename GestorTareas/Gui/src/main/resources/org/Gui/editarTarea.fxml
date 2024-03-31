@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="org.Gui.EditarTareaController">
+    <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+    
+    <Text text="Editar Tarea" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+    
+    <Label text="Título:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="tituloTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    
+    <Label text="Descripción:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextField fx:id="descripcionTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    
+    <Label text="Fecha Límite:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <DatePicker fx:id="fechaLimiteDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    
+    <Label text="Estado:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+<ComboBox fx:id="estadoComboBox" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+    
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+        <Button onAction="#editarTarea" text="Modificar" />
+        <Button onAction="#cancelar" text="Cancelar" />
+    </HBox>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

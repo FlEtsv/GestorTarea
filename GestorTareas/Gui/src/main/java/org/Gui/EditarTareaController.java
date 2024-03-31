@@ -19,11 +19,13 @@ import org.BasesDatos.TareaDAO;
 import org.BasesDatos.TareaDAOImpl;
 import org.BasesDatos.TareaServicio;
 
-public class AgregarTareaController {
+public class EditarTareaController {
     int usuarioId = Sesion.getInstance().getResultadoInicioSesion();
     TareaDAO tareaDAO = new TareaDAOImpl(); 
     TareaServicio tareaServicio = new TareaServicio(tareaDAO);
     TareaDAOImpl TareaDaoImp = new TareaDAOImpl();
+    int idTarea = Sesion.getInstance().getIdTarea();
+    
     @FXML
     private TextField tituloTextField;
     @FXML
@@ -39,7 +41,7 @@ public class AgregarTareaController {
     }
 
     @FXML
-    private void agregarTarea() {
+    private void editarTarea() {
         String titulo = tituloTextField.getText();
         String descripcion = descripcionTextField.getText();
         LocalDate fechaLimite = fechaLimiteDatePicker.getValue();
@@ -49,12 +51,13 @@ public class AgregarTareaController {
 
 
         nuevaTarea.setUsuario_id(usuarioId);
+        nuevaTarea.setId(idTarea);
         nuevaTarea.setTitulo(titulo);
         nuevaTarea.setDescripcion(descripcion);
         nuevaTarea.setEstado(estado);
         nuevaTarea.setFecha_limite(fechaLimite);
         
-        TareaDaoImp.crearTarea(nuevaTarea);
+        TareaDaoImp.modificarTarea(nuevaTarea);
 
         
         cerrarVentana();
@@ -69,4 +72,5 @@ public class AgregarTareaController {
         tituloTextField.getScene().getWindow().hide(); // Cierra la ventana actual
     }
 }
+
 

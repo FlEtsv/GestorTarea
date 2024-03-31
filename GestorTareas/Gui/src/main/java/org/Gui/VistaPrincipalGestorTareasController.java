@@ -1,5 +1,6 @@
 package org.Gui;
 
+import java.io.IOException;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.BasesDatos.Tarea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.BasesDatos.TareaDAO;
 import org.BasesDatos.TareaServicio;
@@ -19,10 +21,11 @@ import org.BasesDatos.TareaDAOImpl;
 
 
 public class VistaPrincipalGestorTareasController extends BaseControlador implements  ControladorConStage {
-        int usuarioId = SesionUsuario.getInstance().getResultadoInicioSesion();
+        int usuarioId = Sesion.getInstance().getResultadoInicioSesion();
         TareaDAO tareaDAO = new TareaDAOImpl(); 
         TareaServicio tareaServicio = new TareaServicio(tareaDAO);
-private Stage stage;
+        TareaDAOImpl TareaDaoImp = new TareaDAOImpl();
+        private Stage stage;
 
     @Override
     public void setStage(Stage stage) {
@@ -52,10 +55,10 @@ private Stage stage;
     @FXML
     private Button botonEliminarTarea;
 
-    // Añadir cualquier otro componente FXML que necesites manejar
 
     public void initialize() {
-        // Configura las columnas de la tabla
+
+        
         columnaTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
         columnaEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         columnaFechaVencimiento.setCellValueFactory(new PropertyValueFactory<>("fecha_limite"));
@@ -66,24 +69,48 @@ private Stage stage;
 
         cargarDatosEnTabla();
         configurarManejadoresEventos();
+        
+        tablaTareas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    if (newValue != null) {
+        System.out.println("ID de la tarea seleccionada: " + newValue.getId());
+        Sesion.getInstance().setIdTarea(newValue.getId());
+    }
+});
+
     }
     
-    private void cargarDatosEnTabla() {
-        ObservableList<Tarea> tareasParaVista = tareaServicio.obtenerTareasParaVista(usuarioId);
-        tablaTareas.setItems(tareasParaVista);
-    }
+private void cargarDatosEnTabla() {
+    ObservableList<Tarea> tareasParaVista = tareaServicio.obtenerTareasParaVista(usuarioId);
+    System.out.println("Cargando tareas en la tabla...");
+    tareasParaVista.forEach(tarea -> System.out.println("Tarea ID: " + tarea.getId()));
+    tablaTareas.setItems(tareasParaVista);
+}
+
+
 
     private void configurarManejadoresEventos() {
         botonAgregarTarea.setOnAction(event -> {
                mostrarAgregarTarea();
+               tablaTareas.getSelectionModel().clearSelection();
+               tablaTareas.refresh();
+               cargarDatosEnTabla();
+
         });
         
         botonEditarTarea.setOnAction(event -> {
-            // Código para editar tarea seleccionada
+            mostrarEditarTarea();
+            tablaTareas.getSelectionModel().clearSelection();
+            tablaTareas.refresh();
+            cargarDatosEnTabla();
+
         });
 
         botonEliminarTarea.setOnAction(event -> {
-            // Código para eliminar tarea seleccionada
+            mostrarDialogoEliminar();
+            tablaTareas.getSelectionModel().clearSelection();
+            tablaTareas.refresh();
+            cargarDatosEnTabla();
+
         });
     }
     @FXML
@@ -95,13 +122,48 @@ private void mostrarAgregarTarea() {
         Stage stage = new Stage();
         stage.setTitle("Agregar Tarea");
         stage.setScene(new Scene(root));
-        stage.show();
+        stage.showAndWait();
         
     } catch (Exception e) {
         e.printStackTrace();
-        // Manejar el error
+
     }
 }
+    @FXML
+private void mostrarEditarTarea() {
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editarTarea.fxml"));
+        Parent root = fxmlLoader.load();
+        
+        Stage stage = new Stage();
+        stage.setTitle("Modificar Tarea");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+
+    }
+}
+@FXML
+private void mostrarDialogoEliminar() {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfirmacionEliminarDialogo.fxml"));
+        Parent root = loader.load();
+
+        ConfirmacionEliminarDialogoController dialogoController = loader.getController();
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Confirmar Eliminación");
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
 
 
 
