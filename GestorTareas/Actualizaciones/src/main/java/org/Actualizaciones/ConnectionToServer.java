@@ -18,13 +18,11 @@ public class ConnectionToServer {
         double latestVersion = 0.0; // Inicializa la última versión con un valor predeterminado
         String urlString =  "https://api.github.com/repos/usuario/repositorio/releases/latest";
         try {
-            // Nota: La URL ahora debería ser la URL de la API de GitHub para obtener releases de un repositorio.
-            // Ejemplo: https://api.github.com/repos/{owner}/{repo}/releases/latest
             URL url = new URL(urlString);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("User-Agent", "Mozilla/5.0");
-            connection.setRequestProperty("Accept", "application/vnd.github.v3+json"); // Especifica la versión de la API
+            connection.setRequestProperty("Accept", "application/vnd.github.v3+json");
 
             int responseCode = connection.getResponseCode();
             System.out.println("Respuesta de servidor: " + responseCode);
