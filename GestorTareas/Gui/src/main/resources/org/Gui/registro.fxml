@@ -5,13 +5,11 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
-
-<VBox alignment="CENTER" prefHeight="296.0" prefWidth="317.0" spacing="10" stylesheets="@iniciosesion.fxml.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/1" fx:controller="org.Gui.RegistroController">
-    <Label text="Registro" />
-    <TextField fx:id="nombreUsuario" promptText="Nombre de Usuario" />
-    <TextField fx:id="email" promptText="Email" />
-    <PasswordField fx:id="contrasena" promptText="Contraseña" />
-    <!-- Botón de registro, con un método onAction referenciado en el controlador -->
-    <Button onAction="#manejarRegistro" text="Registrarse" />
-   <Label id="volverInicioSesion" text="¿Ya tienes una cuenta?" onMouseClicked="#volverInicioSesion" style="-fx-cursor: hand;" />
+<VBox alignment="CENTER" prefHeight="296.0" prefWidth="317.0" spacing="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/1" fx:controller="org.Gui.RegistroController" stylesheets="@registro.fxml.css">
+    <Label text="%register" />
+    <TextField fx:id="nombreUsuario" promptText="%username" />
+    <TextField fx:id="email" promptText="%email" />
+    <PasswordField fx:id="contrasena" promptText="%password" />
+    <Button onAction="#manejarRegistro" text="%register_button" />
+   <Label id="volverInicioSesion" text="%already_account" onMouseClicked="#volverInicioSesion" style="-fx-cursor: hand;" />
 </VBox>

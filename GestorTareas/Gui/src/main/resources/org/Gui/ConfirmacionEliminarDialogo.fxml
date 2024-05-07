@@ -7,11 +7,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Gui.ConfirmacionEliminarDialogoController">
     <children>
-        <Label layoutX="14.0" layoutY="14.0" text="¿Estás seguro de que quieres eliminar esta tarea?" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0"/>
+        <Label layoutX="14.0" layoutY="14.0" text="%confirm_delete_task" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0"/>
         <HBox alignment="CENTER" layoutY="74.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
-            <Button fx:id="botonSi" text="Sí" onAction="#manejarSi"/>
-            <Button fx:id="botonNo" text="No" onAction="#manejarNo"/>
+            <Button fx:id="botonSi" text="%button_yes" onAction="#manejarSi"/>
+            <Button fx:id="botonNo" text="%button_no" onAction="#manejarNo"/>
         </HBox>
     </children>
 </AnchorPane>
+
 

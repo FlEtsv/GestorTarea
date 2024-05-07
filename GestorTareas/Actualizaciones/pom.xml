@@ -1,5 +1,6 @@
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
@@ -13,9 +14,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.release>21</maven.compiler.release> <!-- Cambiado a JDK 21 -->
   </properties>
-
 
   <build>
     <plugins>
@@ -23,18 +23,18 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId> <!-- Asegúrate de usar una versión del plugin compatible -->
         <configuration>
-          <source>1.8</source> <!-- Especifica la versión de Java source -->
-          <target>1.8</target> <!-- Especifica la versión de Java target -->
+          <source>21</source> <!-- Cambiado a JDK 21 -->
+          <target>21</target> <!-- Cambiado a JDK 21 -->
         </configuration>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
-	  <dependency>
-        <groupId>org.json</groupId>
-        <artifactId>json</artifactId>
-        <version>20210307</version> <!-- Asegúrate de utilizar la última versión disponible o la que sea compatible con tu proyecto -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20210307</version> <!-- Asegúrate de utilizar la última versión disponible o la que sea compatible con tu proyecto -->
     </dependency>
     <dependency>
       <groupId>junit</groupId>

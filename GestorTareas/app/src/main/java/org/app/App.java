@@ -4,7 +4,6 @@ package org.app;
 import javafx.application.Application;
 import javafx.application.Platform;
 import org.BasesDatos.CrearBaseDatos;
-import org.BasesDatos.ConsultasDB;
 import org.Gui.MainApp;
 
 
@@ -13,9 +12,6 @@ public class App {
     {
     	CrearBaseDatos crear = new CrearBaseDatos();
     	crear.Crear();
-        ConsultasDB consultar = new ConsultasDB();
-        System.out.println("usuarios en la base de datos");
-        consultar.mostrarUsuarios();
   
         
                 // Ahora inicia la aplicación JavaFX

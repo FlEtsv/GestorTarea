@@ -1,12 +1,16 @@
 package org.Gui;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.BasesDatos.Tarea;
@@ -26,11 +30,21 @@ public class VistaPrincipalGestorTareasController extends BaseControlador implem
         TareaServicio tareaServicio = new TareaServicio(tareaDAO);
         TareaDAOImpl TareaDaoImp = new TareaDAOImpl();
         private Stage stage;
+        private String currentFxmlPath;
+        private Stage currentStage;
 
     @Override
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+        @FXML
+    private Menu menuFile;
+    @FXML
+    private Menu menuEdit;
+    @FXML
+    private Menu menuView;
+    @FXML
+    private Menu menuHelp;
     @FXML
     private TableView<Tarea> tablaTareas;
 
@@ -85,6 +99,19 @@ private void cargarDatosEnTabla() {
     tareasParaVista.forEach(tarea -> System.out.println("Tarea ID: " + tarea.getId()));
     tablaTareas.setItems(tareasParaVista);
 }
+public void cambiarIdioma(ActionEvent event) {
+    if (Sesion.getInstance().getIdioma().equals("Español")) {
+        Sesion.getInstance().setIdioma("Ingles");
+    } else {
+        Sesion.getInstance().setIdioma("Español");
+    }
+    
+    actualizarTextos();
+}
+
+private void actualizarTextos() {
+    mainApp.cargarVista("/org/Gui/vistaTareas.fxml", stage);
+}
 
 
 
@@ -113,49 +140,73 @@ private void cargarDatosEnTabla() {
 
         });
     }
+    // Método para configurar la localización y el idioma
+    
+private void configurarLocalizacion() {
+    Locale idiomaLocalizacion = null;
+    try {
+        if (Sesion.getInstance().getIdioma().equals("Español")) {
+            idiomaLocalizacion = new Locale("es", "ES");
+        } else {
+            idiomaLocalizacion = new Locale("en", "US");
+        }
+        if (idiomaLocalizacion == null) {
+            throw new RuntimeException("Locale no establecido correctamente");
+        }
+        bundle = ResourceBundle.getBundle("org.Gui.MessagesBundle", idiomaLocalizacion);
+    } catch (Exception e) {
+        e.printStackTrace();
+        throw new RuntimeException("Error al cargar los recursos de localización", e);
+    }
+}
+private ResourceBundle bundle;
+
     @FXML
 private void mostrarAgregarTarea() {
+    configurarLocalizacion(); // Llama al método de configuración del idioma y la localización
     try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("agregarTarea.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("agregarTarea.fxml"), bundle);
         Parent root = fxmlLoader.load();
-        
+
         Stage stage = new Stage();
-        stage.setTitle("Agregar Tarea");
+        stage.setTitle(bundle.getString("tituloAgregarTarea")); // Usa el bundle para obtener el título
         stage.setScene(new Scene(root));
         stage.showAndWait();
-        
+
     } catch (Exception e) {
         e.printStackTrace();
-
     }
 }
-    @FXML
+
+@FXML
 private void mostrarEditarTarea() {
+    configurarLocalizacion(); // Llama al método de configuración del idioma y la localización
     try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editarTarea.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("editarTarea.fxml"), bundle);
         Parent root = fxmlLoader.load();
-        
+
         Stage stage = new Stage();
-        stage.setTitle("Modificar Tarea");
+        stage.setTitle(bundle.getString("tituloEditarTarea")); // Usa el bundle para obtener el título
         stage.setScene(new Scene(root));
         stage.showAndWait();
-        
+
     } catch (Exception e) {
         e.printStackTrace();
-
     }
 }
+
 @FXML
 private void mostrarDialogoEliminar() {
+    configurarLocalizacion(); // Llama al método de configuración del idioma y la localización
     try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfirmacionEliminarDialogo.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfirmacionEliminarDialogo.fxml"), bundle);
         Parent root = loader.load();
 
         ConfirmacionEliminarDialogoController dialogoController = loader.getController();
 
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Confirmar Eliminación");
+        stage.setTitle(bundle.getString("tituloConfirmarEliminacion")); // Usa el bundle para obtener el título
         stage.setScene(new Scene(root));
         stage.showAndWait();
 
@@ -163,6 +214,10 @@ private void mostrarDialogoEliminar() {
         e.printStackTrace();
     }
 }
+
+// Método para configurar la localización y el idioma
+
+
 
 
 

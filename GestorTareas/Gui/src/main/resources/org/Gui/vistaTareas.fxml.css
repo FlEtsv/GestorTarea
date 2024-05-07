@@ -1,0 +1,68 @@
+/* Estilo general para VBox y sus contenidos */
+.vbox {
+    -fx-padding: 10;
+    -fx-spacing: 5;
+}
+
+/* Estilos para el menú y la barra de herramientas */
+.menu-bar, .tool-bar {
+    -fx-background-color: #f0f0f0; /* Gris claro */
+}
+
+.menu {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333; /* Gris oscuro */
+}
+
+/* Estilos para botones */
+.button {
+    -fx-background-color: #607D8B; /* Azul Grisáceo */
+    -fx-text-fill: #fff; /* Blanco */
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0); /* Sombra sutil */
+}
+
+.button:hover {
+    -fx-background-color: #455A64; /* Azul Grisáceo más oscuro */
+    -fx-scalex: 1.05; /* Escalar ligeramente al pasar el mouse */
+    -fx-scaley: 1.05;
+    -fx-transition: all 0.3s ease-in-out; /* Transición suave */
+}
+
+.button:pressed {
+    -fx-background-color: #37474F; /* Azul Grisáceo aún más oscuro al presionar */
+    -fx-scalex: 0.95; /* Escalar ligeramente al presionar */
+    -fx-scaley: 0.95;
+    -fx-transition: all 0.2s ease-in-out; /* Transición suave */
+}
+
+/* Estilo para TableView y TableColumn */
+.table-view {
+    -fx-base: #ffffff; /* Blanco */
+    -fx-control-inner-background: #ffffff; /* Blanco */
+    -fx-background-color: #ffffff; /* Blanco */
+    -fx-table-cell-border-color: transparent; /* Sin borde entre celdas */
+    -fx-padding: 5;
+}
+
+.table-column {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333; /* Gris oscuro */
+}
+
+/* Efectos sutiles para animar el TableView */
+.table-row-cell:filled:selected, .table-row-cell:filled:hover:selected {
+    -fx-background-color: #B0BEC5; /* Azul Grisáceo Claro */
+    -fx-text-fill: #ffffff; /* Blanco */
+    -fx-transition: background-color 0.3s linear; /* Transición suave */
+}
+
+.table-row-cell:filled:hover {
+    -fx-background-color: #CFD8DC; /* Azul Grisáceo Muy Claro */
+    -fx-transition: background-color 0.3s linear; /* Transición suave */
+}

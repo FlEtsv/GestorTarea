@@ -1,5 +1,6 @@
 package org.Gui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -23,7 +24,6 @@ public class InicioSesionController extends BaseControlador implements  Controla
     @FXML
     private PasswordField contrasena;
 
-    // Setter para inyectar la referencia de MainApp
 
 
     @FXML
@@ -69,7 +69,21 @@ public class InicioSesionController extends BaseControlador implements  Controla
             System.out.println("mainApp es null");
         }
     }
-}
+    
+    public void cambiarIdioma(ActionEvent event) {
+    if (Sesion.getInstance().getIdioma().equals("Español")) {
+        Sesion.getInstance().setIdioma("Ingles");
+    } else {
+        Sesion.getInstance().setIdioma("Español");
+    }
+
+        actualizarTextos();
+    }
+
+    private void actualizarTextos() {
+        mainApp.cargarVista("/org/Gui/inicio.fxml", stage);
+    }
+    }
 
 
 

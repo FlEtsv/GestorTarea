@@ -3,8 +3,13 @@ package org.Gui;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -18,7 +23,7 @@ public class MainApp extends Application {
     private final StackPane mainContainer = new StackPane();
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         Scene scene = new Scene(mainContainer, 800, 600);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Gestor de Tareas");
@@ -28,8 +33,24 @@ public class MainApp extends Application {
     }
 
 public void cargarVista(String fxmlPath, Stage stageActual) {
+    Locale idiomaLocalizacion = null; // Inicializa la variable aquí
     InputStream is = null;
     try {
+        // Especifica el Locale que deseas usar basado en la sesión
+        if (Sesion.getInstance().getIdioma().equals("Español")) {
+            idiomaLocalizacion = new Locale("es", "ES"); // Para español de España
+        } else {
+            idiomaLocalizacion = new Locale("en", "US"); // Para inglés de Estados Unidos
+        }
+
+        // Asegura que idiomaLocalizacion ha sido inicializado
+        if (idiomaLocalizacion == null) {
+            throw new RuntimeException("Locale no establecido correctamente");
+        }
+
+        // Carga el ResourceBundle para la localización con el Locale específico
+        ResourceBundle bundle = ResourceBundle.getBundle("org.Gui.MessagesBundle", idiomaLocalizacion);
+        
         // Intenta obtener el recurso como un stream
         is = getClass().getResourceAsStream(fxmlPath);
         if (is != null) {
@@ -37,6 +58,7 @@ public void cargarVista(String fxmlPath, Stage stageActual) {
             dialogo.mostrarDialogoPersonalizado("Ruta encontrada y existente");
             
             FXMLLoader loader = new FXMLLoader();
+            loader.setResources(bundle);  // Establece el ResourceBundle en el FXMLLoader
             loader.setLocation(getClass().getResource(fxmlPath));
             loader.setControllerFactory(type -> {
                 if (BaseControlador.class.isAssignableFrom(type)) {
@@ -59,7 +81,7 @@ public void cargarVista(String fxmlPath, Stage stageActual) {
                 }
             });
             
-            Pane vista = loader.load(is); //  esta línea corresponde con el tipo del contenedor raíz de tu FXML
+            Pane vista = loader.load(is); // Esta línea corresponde con el tipo del contenedor raíz de tu FXML
             mainContainer.getChildren().clear();
             mainContainer.getChildren().setAll(vista);
         } else {
@@ -80,9 +102,11 @@ public void cargarVista(String fxmlPath, Stage stageActual) {
 }
 
 
-
-
 }
+
+
+
+
 
 
 /*

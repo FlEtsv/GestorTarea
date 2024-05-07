@@ -12,6 +12,15 @@ public class Sesion {
     private static Sesion instancia = null;
     private int resultadoInicioSesion;
     private int idTarea;
+    private String idioma = "Español";
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
     
     private Sesion() {
         // Constructor privado para el patrón Singleton

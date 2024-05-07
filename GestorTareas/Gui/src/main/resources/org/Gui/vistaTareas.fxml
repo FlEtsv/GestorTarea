@@ -9,30 +9,32 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Gui.VistaPrincipalGestorTareasController">
+<BorderPane  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Gui.VistaPrincipalGestorTareasController" stylesheets="@vistaTareas.fxml.css">
     <top>
         <VBox>
             <MenuBar>
-                <Menu text="Archivo" />
-                <Menu text="Editar" />
-                <Menu text="Ver" />
-                <Menu text="Ayuda" />
+                <Menu text="%menu_file" />
+                <Menu text="%menu_edit" />
+                <Menu text="%menu_view" />
+                <Menu text="%menu_help" />
             </MenuBar>
             <ToolBar>
-                <Button fx:id="botonAgregarTarea" text="Agregar Tarea" />
-                <Button fx:id="botonEditarTarea" text="Editar Tarea" />
-                <Button fx:id="botonEliminarTarea" text="Eliminar Tarea" />
+                <Button fx:id="botonAgregarTarea" text="%button_add_task" />
+                <Button fx:id="botonEditarTarea" text="%button_edit_task" />
+                <Button fx:id="botonEliminarTarea" text="%button_delete_task" />
+                <Button fx:id="botonCambioIdioma" text="%button_change_language" onAction="#cambiarIdioma"/>
             </ToolBar>
         </VBox>
     </top>
     <center>
         <TableView fx:id="tablaTareas">
             <columns>
-                <TableColumn fx:id="columnaTitulo" prefWidth="99.0" text="Título" />
-                <TableColumn fx:id="columnaEstado" prefWidth="66.0" text="Estado" />
-                <TableColumn fx:id="columnaFechaVencimiento" prefWidth="112.0" text="Fecha Vencimiento" />
-                <TableColumn fx:id="columnaDescripcion" prefWidth="200" text="Descripcion" /> 
+                <TableColumn fx:id="columnaTitulo" prefWidth="99.0" text="%table_column_title" />
+                <TableColumn fx:id="columnaEstado" prefWidth="66.0" text="%table_column_status" />
+                <TableColumn fx:id="columnaFechaVencimiento" prefWidth="112.0" text="%table_column_due_date" />
+                <TableColumn fx:id="columnaDescripcion" prefWidth="200" text="%table_column_description" /> 
             </columns>
         </TableView>
     </center>
 </BorderPane>
+

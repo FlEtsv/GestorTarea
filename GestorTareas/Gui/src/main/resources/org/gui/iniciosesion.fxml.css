@@ -1,13 +1,86 @@
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
-
+/* Estilos generales para el BorderPane y VBox */
+.border-pane {
+    -fx-padding: 20;
+    -fx-background-color: #EAEAEA; /* Fondo gris claro */
 }
-.button {
-    -fx-background-color: #0073e6;
-    -fx-text-fill: white;
+
+.vbox {
+    -fx-padding: 20;
+    -fx-alignment: center;
+    -fx-spacing: 10; /* Espaciado entre elementos */
+}
+
+/* Estilo específico para el HBox en la parte superior */
+.top-bar {
+    -fx-padding: 10 20 10 20;
+    -fx-background-color: #f4f4f4; /* Fondo gris claro */
+    -fx-alignment: center;
+}
+
+/* Estilos para botón de cambio de idioma más discreto y moderno */
+.language-button {
+    -fx-background-color: transparent; /* Fondo transparente */
+    -fx-text-fill: #FF6F61; /* Rojo suave para el texto */
     -fx-font-weight: bold;
+    -fx-padding: 10 20; /* Más relleno */
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border: 2px solid #FF6F61; /* Borde rojo */
+    -fx-cursor: pointer; /* Cambiar el cursor a puntero */
+    -fx-transition: all 0.3s; /* Transición suave */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0); /* Sombra suave */
 }
 
+.language-button:hover {
+    -fx-background-color: #FF6F61; /* Fondo rojo al pasar el mouse */
+    -fx-text-fill: #fff; /* Texto blanco al pasar el mouse */
+    -fx-scale-x: 1.05; /* Escalar ligeramente al pasar el mouse */
+    -fx-scale-y: 1.05;
+}
+
+.language-button:pressed {
+    -fx-scale-x: 0.95; /* Escalar ligeramente al presionar */
+    -fx-scale-y: 0.95;
+}
+
+/* Estilos para etiquetas interactivas como enlaces */
+.link-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #3498DB; /* Azul */
+    -fx-underline: true; /* Subrayar para apariencia de enlace */
+    -fx-cursor: hand; /* Cambiar el cursor al pasar el mouse */
+}
+
+.link-label:hover {
+    -fx-text-fill: #2980B9; /* Cambia de color al pasar el mouse */
+}
+
+/* Estilos para efecto de resaltado de texto */
+.highlighted-text {
+    -fx-fill: #FF6F61; /* Rojo */
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, #FF6F61, 10, 0, 0, 0); /* Sombra roja */
+}
+
+/* Estilos para botones de acción */
+.action-button {
+    -fx-background-color: #4CAF50; /* Verde */
+    -fx-text-fill: #fff; /* Texto blanco */
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0); /* Sombra suave */
+}
+
+.action-button:hover {
+    -fx-background-color: #388E3C; /* Verde más oscuro */
+    -fx-scale-x: 1.05; /* Escalar ligeramente al pasar el mouse */
+    -fx-scale-y: 1.05;
+}
+
+.action-button:pressed {
+    -fx-background-color: #2E7D32; /* Verde aún más oscuro al presionar */
+    -fx-scale-x: 0.95; /* Escalar ligeramente al presionar */
+    -fx-scale-y: 0.95;
+}

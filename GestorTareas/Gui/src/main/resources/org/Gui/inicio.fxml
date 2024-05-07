@@ -3,11 +3,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:controller="org.Gui.InicioSesionController" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/1" spacing="10" alignment="CENTER"
-      stylesheets="@iniciosesion.fxml.css">
-    <Label text="Inicio de Sesión"/>
-    <TextField fx:id="nombreUsuario" promptText="Nombre de Usuario"/>
-    <PasswordField fx:id="contrasena" promptText="Contraseña"/>
-    <Button text="Iniciar Sesión" onAction="#manejarInicioSesion"/>
-    <Label fx:id="registrarte" text="¿Aun no tienes cuenta? Regístrate aquí." onMouseClicked="#registrarte" style="-fx-cursor: hand;" />
-</VBox>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.Gui.InicioSesionController">
+    <top>
+        <HBox alignment="TOP_RIGHT" spacing="10" styleClass="top-bar">
+            <Button fx:id="botonCambioIdioma" text="%language_button" onAction="#cambiarIdioma" styleClass="language-button"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="10" alignment="CENTER" stylesheets="@iniciosesion.fxml.css">
+            <Label text="%login_title"/>
+            <TextField fx:id="nombreUsuario" promptText="%username_prompt"/>
+            <PasswordField fx:id="contrasena" promptText="%password_prompt"/>
+            <Button text="%login_button" onAction="#manejarInicioSesion"/>
+            <Label fx:id="registrarte" text="%registration_prompt" onMouseClicked="#registrarte" styleClass="link-label"/>
+        </VBox>
+    </center>
+</BorderPane>
+
